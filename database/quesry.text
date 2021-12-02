@@ -32,3 +32,45 @@ SELECT * FROM `student` WHERE sname LIKE "m%";
 SELECT * FROM `student` WHERE sname LIKE "%a";
 
 SELECT * FROM `student` WHERE sname LIKE "%y%";
+
+SELECT * FROM `student` ORDER BY enroll DESC;
+
+SELECT sum(salary) FROM employee  where department="Banking" GROUP BY department;
+
+SELECT COUNT(emp) FROM employee WHERE department="Banking" GROUP BY department;
+
+SELECT sum(salary) as totalsalary,department FROM employee GROUP BY department HAVING totalsalary < 1600000;
+
+DROP TABLE table_name;
+
+create UNIQUE index sname1 on student(sname);
+
+ALTER TABLE student drop index sname1;
+
+TRUNCATE TABLE table_name;
+
+alter TABLE student add hobby varchar(200);
+
+create view studentview as (SELECT * from student);
+
+CREATE PROCEDURE getStudent()
+SELECT * FROM student;
+
+CALL getStudent();
+
+create PROCEDURE getempbyid(id int)
+SELECT * FROM student WHERE enroll=id;
+
+call getempbyid(5);
+
+
+create TRIGGER trigger1
+after UPDATE
+on student
+
+for EACH ROW
+insert into temptable(sid,datetimeo)VALUES(old.enroll,now());
+
+
+SELECT * from student_course join student on student_course.sid=student.enroll JOIN course on student_course.cid = course.cid;
+
